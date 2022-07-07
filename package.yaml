@@ -1,0 +1,27 @@
+name:                foo
+version:             0.1.0.0
+
+library:
+  source-dirs: src
+  dependencies:
+    - base
+    - ghc
+
+executables:
+  foo-exe:
+    main: Main.hs
+    source-dirs: app
+    dependencies:
+      - base
+      - foo
+
+tests:
+  foo-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options: -F -pgmF=foo-exe
+    build-tools:
+      - foo:foo-exe
+    dependencies:
+      - base
+      - foo
